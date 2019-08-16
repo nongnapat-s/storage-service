@@ -18,7 +18,8 @@ class CreateAppsTable extends Migration
             $table->string('app_name');
             $table->string('token');
             $table->string('secret');
-            $table->json('types');
+            $table->json('public_type_file');
+            $table->json('private_type_file');
             $table->string('size');
             $table->boolean('year_folder')->default(0);
             $table->boolean('month_folder')->default(0);

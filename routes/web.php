@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::get('/register_app',function(){
+//   return view('index');
+//});
+
+Route::get('/register_app','RegisterAppController@index');
+
+Route::post('/saveRegisterApp','RegisterAppController@store');
