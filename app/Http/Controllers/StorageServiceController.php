@@ -36,9 +36,10 @@ class StorageServiceController extends Controller
      */
     public function store(Request $request)
     { 
-        $register_app = RegisterApp::create(request()->all());
+        $register_app = new RegisterApp(request()->all());
         $status = $register_app->isComplete();
         if ($status === true){
+            
             return redirect()->back()->with('success','Create Successfully');
         }
         return redirect()->back()->with('status', $status);
