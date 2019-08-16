@@ -19,6 +19,6 @@ Route::get('/', function () {
 //   return view('index');
 //});
 
-Route::get('/register_app','RegisterAppController@index');
+Route::get('/dashboard','StorageServiceController@index');
 
-Route::post('/saveRegisterApp','RegisterAppController@store');
+Route::post('/store','StorageServiceController@store');

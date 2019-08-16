@@ -10,7 +10,9 @@
     </head>
     <body>
         <div class="container">
+            <div class="col-12 mt-4">
             @yield('content')
+            </div>
         </div>
         <footer>
             @yield('footer')

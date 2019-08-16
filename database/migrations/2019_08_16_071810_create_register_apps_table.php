@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppsTable extends Migration
+class CreateRegisterAppsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateAppsTable extends Migration
      */
     public function up()
     {
-        Schema::create('apps', function (Blueprint $table) {
+        Schema::create('register_apps', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('app_name');
-            $table->string('token');
-            $table->string('secret');
-            $table->json('public_type_file');
-            $table->json('private_type_file');
-            $table->string('size');
+            $table->string('app_name')->nullable();
+            $table->string('token')->nullable();
+            $table->string('secret')->nullable();
+            $table->json('public_type_file')->nullable();
+            $table->json('private_type_file')->nullable();
+            $table->string('size')->nullable();
             $table->boolean('year_folder')->default(0);
             $table->boolean('month_folder')->default(0);
             $table->timestamps();
@@ -34,6 +34,6 @@ class CreateAppsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apps');
+        Schema::dropIfExists('register_apps');
     }
 }
