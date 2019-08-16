@@ -15,7 +15,7 @@ class StorageServiceController extends Controller
     public function index()
     {
         $apps = RegisterApp::all();
-        return view('index')->with(['apps'=>$apps]);
+        return view('index')->with([ 'apps' => $apps ]);
     }
 
     /**
@@ -36,6 +36,7 @@ class StorageServiceController extends Controller
      */
     public function store(Request $request)
     { 
+        \Log::info(request()->all());
         $register_app = new RegisterApp(request()->all());
         $status = $register_app->isComplete();
         if ($status === true){

@@ -24,19 +24,38 @@ class RegisterApp extends Model
         'private_type_file' => 'array'  
     ];
 
-      /**
-     * Set field 'secret'.
-     *
-     * @param string $value
-     */
-    public function setSecretAttribute($value)
-    {
-        $this->attributes['secret'] = Hash::make($value);
-    }
+    //   /**
+    //  * Set field 'secret'.
+    //  *
+    //  * @param string $value
+    //  */
+    // public function setSecretAttribute($value)
+    // {
+    //     $this->attributes['secret'] = Hash::make($value);
+    // }
 
+    
+    //   /**
+    //  * Set field 'secret'.
+    //  *
+    //  * @param string $value
+    //  */
+    // public function getSecretAttribute($value)
+    // {
+    //     return Hash::check($value, $this->attributes['secret']);
+    // }
     public function isComplete()
     {
         $fieldsNeed = [];
+        if ($this->app_name === null)
+        {
+            $fieldsNeed['app_name'] = 'กรุณากรอก App name';
+        }
+
+        if ($this->secret == null)
+        {
+            $fieldsNeed['secret'] = 'กรุณากรอก Secret';
+        }
 
         if(!$this->public_type_file && !$this->private_type_file)
         {
