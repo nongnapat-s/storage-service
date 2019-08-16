@@ -41,9 +41,8 @@ class RegisterAppController extends Controller
         $validate = [
             'app_name' => 'required',
             'secret' => 'required',
-            'size' => 'required|max:2',
-            'public_type_file' => 'required',
-            'private_type_file' => 'required'
+            'size' => 'required|max:2'
+        
            
         ];
 
@@ -51,7 +50,7 @@ class RegisterAppController extends Controller
             'app_name.required' => 'กรุณาระบุชื่อระบบงาน(Application Name)',
             'secret.required' => 'กรุณาระบุรหัสลับสำหรับระบบงาน(Application Secret)',
             'size.required' => 'กรุณาระบุขนาดไฟล์ใหญ่ที่สุด',
-            'private_type_file.required' => 'กรุณาเลือกประเภทไฟล์ public'
+
           
         ];
 
