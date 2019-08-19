@@ -20,7 +20,7 @@ class storageServiceGuard
         
         $app = AppRegister::where('token', $request->token)->first();
 
-        if (!Hash::check($request->secret, $app['secret']))
+        if (!$app || !Hash::check($request->secret, $app['secret']))
         {
             return response('not allowed', 401);
         }
