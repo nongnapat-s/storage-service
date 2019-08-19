@@ -19,18 +19,18 @@ class StorageServiceController extends Controller
     
     public function upload()
     {
-        if (!request()->get('app') || !request()->get('function')) return response('not allowed', 401);
+        if (!request()->input('app') || !request()->input('state')) return response('not allowed', 401);
         
         $now = Carbon::now();
         $year = $now->year;
         $month = $now->month;
 
-        $function = request()->get('function');
-        $app = request()->get('app');
+        $state = request()->input('state');
+        $app = request()->input('app');
 
         $app_folder = $app['app_name'] . '/' . ($app['year_folder'] ? $year . '/' : '') . ($app['month_folder'] ? $month . '/' : '');
 
-        if ($function === 'public')
+        if ($state === 'public')
         {
             $path = '/public/'. $app_folder;
         }else {

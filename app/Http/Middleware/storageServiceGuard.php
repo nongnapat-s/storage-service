@@ -18,22 +18,22 @@ class storageServiceGuard
 
     public function handle($request, Closure $next)
     {
-        if (!request()->has('token') || 
-            !request()->has('secret') || 
-            !request()->has('file') || 
-            !request()->has('function'))
+        if (!$request->header('token') || 
+            !$request->header('secret') || 
+            !$request->has('file') || 
+            !$request->has('state'))
                 return response('incomplete request', 400);
         
-        $app = AppRegister::where('token', $request->token)->first();
+        $app = AppRegister::where('token', $request->header('token'))->first();
 
-        if (!$app || !Hash::check($request->secret, $app['secret']))
+        if (!$app || !Hash::check($request->header('secret'), $app['secret']))
         {
             return response('not allowed', 401);
         }
 
         $request->merge([
             'app' => $app,
-            'funciton' => request()->has('function'),
+            'state' => $request->state,
         ]);
 
         return $next($request);
