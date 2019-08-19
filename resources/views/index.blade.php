@@ -126,7 +126,7 @@
                 {{ !empty(Session::get('status')['secret']) ? Session::get('status')['secret'] : ''}}
             </div>
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label class="font-weight-bold" for="appSecret">Accept file type in public :</label>
             <div class="custom-control custom-checkbox custom-control-inline">
                 <input 
@@ -218,7 +218,7 @@
             <div class="invalid-feedback">
                 {{ !empty(Session::get('status')['max_size']) ? Session::get('status')['max_size'] : ''}}
             </div>
-        </div>
+        </div> --}}
         <div class="form-group">
             <label class="font-weight-bold" for="appSecret">Select sub folder :</label>
             <div class="custom-control custom-checkbox custom-control-inline">

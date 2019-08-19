@@ -11,9 +11,9 @@ class RegisterApp extends Model
         'id',
         'app_name',
         'secret',
-        'public_type_file',
-        'private_type_file',
-        'types', 
+        // 'public_type_file',
+        // 'private_type_file',
+        // 'types', 
         'size',
         'year_folder',
         'month_folder' 

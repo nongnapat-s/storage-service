@@ -18,9 +18,9 @@ class CreateRegisterAppsTable extends Migration
             $table->string('app_name')->nullable();
             $table->string('token')->nullable();
             $table->string('secret')->nullable();
-            $table->json('public_type_file')->nullable();
-            $table->json('private_type_file')->nullable();
-            $table->string('size')->nullable();
+            // $table->json('public_type_file')->nullable();
+            // $table->json('private_type_file')->nullable();
+            // $table->string('size')->nullable();
             $table->boolean('year_folder')->default(0);
             $table->boolean('month_folder')->default(0);
             $table->timestamps();
