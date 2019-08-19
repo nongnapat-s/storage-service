@@ -40,18 +40,18 @@ class StorageServiceController extends Controller
         if(request()->hasFile('file')) {
             $file_path = request()->file('file')->store($path);
 
-            $info = pathinfo($file_path);
+            $file_info = pathinfo($file_path);
 
             $file = new File;
             $file->app_id = $app['id'];
-            $file->path = $info['dirname'];
-            $file->name = $info['basename'];
-            $file->type = $info['extension'];
+            $file->path = $file_info['dirname'];
+            $file->name = $file_info['basename'];
+            $file->type = $file_info['extension'];
             $file->size = Storage::size($file_path);
             $file->save();
-            return back();
+            return ['reply_code' => 0 , 'reply_text' => 'OK', 'file_info' => $file_info];
         }
         else    
-            return 'no file';
+            return ['reply_code' => 1 , 'reply_text' => 'no file'];
     }
 }
