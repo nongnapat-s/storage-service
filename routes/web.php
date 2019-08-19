@@ -11,14 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/dashboard','AppRegisterController@index');
+
+Route::post('/store','AppRegisterController@store');
+
+Route::post('/upload','StorageServiceController@upload');
+
+
+Route::get('test', function() {
+    return view('test');
 });
-
-//Route::get('/register_app',function(){
-//   return view('index');
-//});
-
-Route::get('/dashboard','StorageServiceController@index');
-
-Route::post('/store','StorageServiceController@store');

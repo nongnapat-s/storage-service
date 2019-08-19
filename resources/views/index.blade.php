@@ -110,7 +110,7 @@
                 type="text" 
                 class="form-control {{ !empty(Session::get('status')['app_name']) ? 'is-invalid' : ''}}" 
                 name="app_name" 
-                placeholder="Application name" />
+                placeholder="Application name" required/>
             <div class="invalid-feedback">
                 {{ !empty(Session::get('status')['app_name']) ? Session::get('status')['app_name'] : ''}}
             </div>
@@ -121,7 +121,7 @@
                 type="password" 
                 class="form-control {{ !empty(Session::get('status')['secret']) ? 'is-invalid' : ''}}" 
                 name="secret" 
-                placeholder="Application secret" />
+                placeholder="Application secret" required/>
             <div class="invalid-feedback">
                 {{ !empty(Session::get('status')['secret']) ? Session::get('status')['secret'] : ''}}
             </div>

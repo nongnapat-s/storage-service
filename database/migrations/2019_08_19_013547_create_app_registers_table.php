@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRegisterAppsTable extends Migration
+class CreateAppRegistersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRegisterAppsTable extends Migration
      */
     public function up()
     {
-        Schema::create('register_apps', function (Blueprint $table) {
+        Schema::create('app_registers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('app_name')->nullable();
             $table->string('token')->nullable();
@@ -34,6 +34,6 @@ class CreateRegisterAppsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('register_apps');
+        Schema::dropIfExists('app_registers');
     }
 }
