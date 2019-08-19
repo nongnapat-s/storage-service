@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 class StorageServiceController extends Controller
 {
-    public $app_name; 
 
     public function __construct()
     {
-        $this->app_name = $this->middleware('storageServiceGuard');
+        $this->middleware('storageServiceGuard');
     }
     
     public function upload()
