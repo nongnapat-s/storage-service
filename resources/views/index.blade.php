@@ -234,10 +234,10 @@
                 <input 
                     type="checkbox" 
                     class="custom-control-input"  
-                    name="month_foler"
-                    id="month_foler"
+                    name="month_folder"
+                    id="month_folder"
                     value="1">
-                <label class="custom-control-label" for="month_foler">MONTH</label>
+                <label class="custom-control-label" for="month_folder">MONTH</label>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Create</button>

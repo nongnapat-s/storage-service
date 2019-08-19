@@ -7,12 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/upload" method="post">
+    <form action="/upload" method="post" enctype="multipart/form-data">
     @csrf
 
     <input type="text" name="token">
     <input type="text" name="secret">
+    <input type="file" name="file">
 
+    <select name="function">
+        <option value="public">public</option>
+        <option value="private">private</option>
+    </select>
     <input type="submit">
     </form>
 </body>

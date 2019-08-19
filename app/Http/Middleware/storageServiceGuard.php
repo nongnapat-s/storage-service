@@ -14,9 +14,15 @@ class storageServiceGuard
      * @param  \Closure  $next
      * @return mixed
      */
+    public $attributes;
+
     public function handle($request, Closure $next)
     {
-        if (!request()->has('token') || !request()->has('secret')) return response('incomplete request', 400);
+        if (!request()->has('token') || 
+            !request()->has('secret') || 
+            !request()->has('file') || 
+            !request()->has('function'))
+                return response('incomplete request', 400);
         
         $app = AppRegister::where('token', $request->token)->first();
 
@@ -24,6 +30,11 @@ class storageServiceGuard
         {
             return response('not allowed', 401);
         }
+
+        $request->merge([
+            'app' => $app,
+            'funciton' => request()->has('function'),
+        ]);
 
         return $next($request);
     }
