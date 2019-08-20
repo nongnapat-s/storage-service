@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\AppRegister;
 use App\UserList;
+
 class AppRegisterController extends Controller
 {
      /**
@@ -16,7 +18,7 @@ class AppRegisterController extends Controller
     public function index()
     {
         $apps = AppRegister::all();
-        return view('index')->with([ 'apps' => $apps ]);
+        return view('index')->with([ 'apps' => $apps ]);  
     }
 
     /**
@@ -46,6 +48,12 @@ class AppRegisterController extends Controller
             {
                 $continue = false;
             }
+        }
+
+        $checkUserList = UserList::where('email', $request->email)->first();
+        if($checkUserList === null)
+        {
+            return redirect()->back()->with('error','Not Permission your Email');
         }
 
         $register_app = AppRegister::create(request()->all());

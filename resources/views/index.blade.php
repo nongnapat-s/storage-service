@@ -6,9 +6,14 @@
             {{ $message }}
         </div>
     @endif  
+    @if($message = Session::get('error'))
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+    @endif  
     <!-- {{$apps}} -->
     <h2>Register Application To Storage Service</h2> <hr/>
-
+    <label class="font-weight-bold" >Email Login : </label>{{Auth::user()->email}}
 
     {{-- <form  class="needs-validation" action="{{url('/store')}}" method="post"  novalidate>
         <input class="form-check-input @error('type') is-invalid @enderror" type="hidden" name="_token" value="{{ csrf_token()}}" >
@@ -104,6 +109,7 @@
 
     <form action="{{url('/store')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
+        <input type="hidden" name="email" value="{{Auth::user()->email}}" >
         <div class="form-group">
             <label class="font-weight-bold" for="app_name">Application name :</label>
             <input 
