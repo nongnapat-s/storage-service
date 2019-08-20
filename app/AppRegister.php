@@ -14,9 +14,7 @@ class AppRegister extends Model
         // 'public_type_file',
         // 'private_type_file',
         // 'types', 
-        'size',
-        'year_folder',
-        'month_folder' 
+        'size'
     ];
 
     protected $casts = [

@@ -17,6 +17,9 @@ Route::post('/store','AppRegisterController@store');
 
 Route::post('/upload','StorageServiceController@upload');
 
+Route::get('/user_list','UserListController@index');
+
+Route::post('/storeUserList','UserListController@store');
 
 Route::get('test', function() {
     return view('test');

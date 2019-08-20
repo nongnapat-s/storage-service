@@ -218,7 +218,7 @@
             <div class="invalid-feedback">
                 {{ !empty(Session::get('status')['max_size']) ? Session::get('status')['max_size'] : ''}}
             </div>
-        </div> --}}
+        </div> 
         <div class="form-group">
             <label class="font-weight-bold" for="appSecret">Select sub folder :</label>
             <div class="custom-control custom-checkbox custom-control-inline">
@@ -239,7 +239,7 @@
                     value="1">
                 <label class="custom-control-label" for="month_folder">MONTH</label>
             </div>
-        </div>
+        </div> --}}
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
     <!-- nongnapat's code -->

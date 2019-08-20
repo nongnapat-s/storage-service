@@ -3,20 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\AppRegister;
 use App\UserList;
-class AppRegisterController extends Controller
+
+class UserListController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $apps = AppRegister::all();
-        return view('index')->with([ 'apps' => $apps ]);
+        return view('userList');
     }
 
     /**
@@ -36,23 +34,18 @@ class AppRegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        $continue = true;
-        while($continue)
+    {
+
+        $duplicate = UserList::where('email', $request->email)->first();
+        if($duplicate === null)
         {
-            $token = Str::random(60);
-            $duplicate = AppRegister::where('token', $token)->first();
-            if($duplicate === null)
-            {
-                $continue = false;
-            }
+            $userList=\App\UserList::create($request->all());
+            return redirect()->back()->with('success','Create Successfully');
+        }else{
+            return redirect()->back()->with('error','Duplicate Email');
         }
-
-        $register_app = AppRegister::create(request()->all());
-        $register_app->token = $token;
-        $register_app->save();
-
-        return redirect()->back()->with('success','Create Successfully');
+     
+        
     }
 
     /**
