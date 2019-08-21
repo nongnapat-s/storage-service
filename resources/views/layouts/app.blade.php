@@ -9,9 +9,7 @@
         <title>@yield('title')</title>
     </head>
     <body>
-       
-        <div class="container">
-            <nav class="navbar navbar-expand-md navbar-light bg-info shadow-sm sticky-top">
+    <nav class="navbar navbar-expand-md navbar-light bg-info shadow-sm sticky-top">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         Register Application to Storage Service
@@ -40,6 +38,8 @@
                 </div>
             </nav>
 
+        <div class="container">
+           
             <div class="col-12 mt-4">
          
                  @yield('content')

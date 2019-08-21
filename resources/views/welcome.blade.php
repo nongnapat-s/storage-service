@@ -73,14 +73,14 @@
                     
                     <small
                       style="padding: 0px 10px 0px 10px; font-size: 22px; color: #E67E22; border-style: solid; border-radius: 25px;">
-                         <a href="{{ Auth::user() ? route('series') : route('login') }}">Login</a>
+                         <a href="{{ route('login') }}">Login</a>
                     </small>
                 
                 </div>
                 <div class="links m-b-md">
                     <small
                       style="padding: 0px 10px 0px 10px; font-size: 22px; color: #E67E22; border-style: solid; border-radius: 25px;">
-                    <a href="{{ Auth::user() ? route('series') : route('register') }}">Register</a>
+                    <a href="{{ route('register') }}">Register</a>
                     </small>
                    
                 </div>
