@@ -12,9 +12,8 @@
     <body>
     <nav class="navbar navbar-expand-md navbar-light bg-info shadow-sm sticky-top">
                 <div class="container">
-                     <i class="fas fa-home"></i>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        Register Application to Storage Service
+                        <i class="fas fa-home"></i> Register Application to Storage Service
                     </a>
                 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
