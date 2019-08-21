@@ -12,8 +12,11 @@
         </div>
     @endif  
     <!-- {{$apps}} -->
-    <h2>Register Application To Storage Service</h2> <hr/>
+    <!--<h2>Register Application To Storage Service</h2> <hr/> -->
+    <!-- <i style='font-size:24px' class='far'>&#xf11a;</i> -->
+    <i style='font-size:24px' class='far'>&#xf581;</i>
     <label class="font-weight-bold" >Email Login : </label>{{Auth::user()->email}}
+    <hr/>
 
     {{-- <form  class="needs-validation" action="{{url('/store')}}" method="post"  novalidate>
         <input class="form-check-input @error('type') is-invalid @enderror" type="hidden" name="_token" value="{{ csrf_token()}}" >
