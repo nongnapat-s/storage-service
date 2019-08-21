@@ -65,34 +65,26 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <h1>
+                    Register Application To Storage Service 
+                </h1>
+                <div class="links m-b-md">
+                    
+                    <small
+                      style="padding: 0px 10px 0px 10px; font-size: 22px; color: #E67E22; border-style: solid; border-radius: 25px;">
+                         <a href="{{ Auth::user() ? route('series') : route('login') }}">Login</a>
+                    </small>
+                
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="links m-b-md">
+                    <small
+                      style="padding: 0px 10px 0px 10px; font-size: 22px; color: #E67E22; border-style: solid; border-radius: 25px;">
+                    <a href="{{ Auth::user() ? route('series') : route('register') }}">Register</a>
+                    </small>
+                   
                 </div>
+               
             </div>
         </div>
     </body>

@@ -11,15 +11,38 @@
     <body>
        
         <div class="container">
-           
+            <nav class="navbar navbar-expand-md navbar-light bg-info shadow-sm sticky-top">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        Register Application to Storage Service
+                    </a>
+                
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <!-- Right Side Of Navbar -->
+                        @auth
+                        <ul class="navbar-nav ml-auto">
+                    
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">Logout</a>
+                            </li>
+                        </ul>
+                        @endauth
+                    </div>
+                </div>
+            </nav>
+
             <div class="col-12 mt-4">
-            @if(Auth::user())
-            <form action="{{ url('logout')}}" method="POST">
-                <input type="hidden" name="_token"  value="{{ csrf_token()}}">
-                <input type="submit" value="logout">
-            </form>
-            @endif
-            @yield('content')
+         
+                 @yield('content')
             </div>
         </div>
         <footer>
