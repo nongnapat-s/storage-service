@@ -12,9 +12,6 @@ class AppRegister extends Model
         'app_name',
         'secret',
         'user_id',
-        // 'public_type_file',
-        // 'private_type_file',
-        // 'types', 
         'size'
     ];
 

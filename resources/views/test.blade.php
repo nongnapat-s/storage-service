@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/upload" method="post" enctype="multipart/form-data">
+    <form action="/download" method="post" enctype="multipart/form-data">
     @csrf
 
     <input type="text" name="token">

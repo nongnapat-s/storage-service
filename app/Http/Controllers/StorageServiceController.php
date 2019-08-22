@@ -10,24 +10,19 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 class StorageServiceController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('storageServiceGuard');
-    }
     
     public function upload()
     {
         if (!request()->input('app') || !request()->input('state')) return response('not allowed', 401);
         
         $now = Carbon::now();
-        $year = $now->year;
-        $month = $now->month;
+        $storage_path = $now->year . '/' . $now->month;
+        $sub_path = request()->input('sub_path') ? '/'. request()->input('sub_path') . '/' : '/';
 
         $state = request()->input('state');
         $app = request()->input('app');
 
-        $app_folder = $app['app_name'] . '/' . ($app['year_folder'] ? $year . '/' : '') . ($app['month_folder'] ? $month . '/' : '');
+        $app_folder = $app['app_name'] . $sub_path . $storage_path;
 
         if ($state === 'public')
         {
@@ -38,8 +33,8 @@ class StorageServiceController extends Controller
 
         if(request()->hasFile('file')) {
             $file_path = request()->file('file')->store($path);
-
             $file_info = pathinfo($file_path);
+            $url = $state === 'public' ? Storage::url($file_path) : null;
 
             $file = new File;
             $file->app_id = $app['id'];
@@ -48,9 +43,23 @@ class StorageServiceController extends Controller
             $file->type = $file_info['extension'];
             $file->size = Storage::size($file_path);
             $file->save();
-            return ['reply_code' => 0 , 'reply_text' => 'OK', 'file_info' => $file_info];
+            
+            return ['reply_code' => 0 , 'reply_text' => 'OK', 'file' => $file, 'url' => $url];
         }
         else    
             return ['reply_code' => 1 , 'reply_text' => 'no file'];
+    }
+
+    public function download()
+    {
+        $file = File::find(request()->input('id'));
+        return Storage::download($file->path . '/' . $file->name);
+    }
+
+    public function delete()
+    {
+        $file = File::find(request()->input('id'));
+        Storage::delete($file->path . '/' . $file->name);
+        return ['reply_code' => 0 , 'reply_text' => 'OK'];
     }
 }

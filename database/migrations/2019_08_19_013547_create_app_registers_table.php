@@ -19,11 +19,6 @@ class CreateAppRegistersTable extends Migration
             $table->string('token')->nullable();
             $table->string('secret')->nullable();
             $table->integer('user_id');
-            // $table->json('public_type_file')->nullable();
-            // $table->json('private_type_file')->nullable();
-            // $table->string('size')->nullable();
-            //$table->boolean('year_folder')->default(0);
-            //$table->boolean('month_folder')->default(0);
             $table->timestamps();
         });
     }

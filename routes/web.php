@@ -14,15 +14,14 @@ Route::get('/', function () {
         return view('welcome');
 });
 
-Route::get('/dashboard','AppRegisterController@index');
-
-Route::post('/store','AppRegisterController@store');
-
-Route::post('/upload','StorageServiceController@upload');
-
 Route::get('/user_list','UserListController@index');
 
 Route::post('/storeUserList','UserListController@store');
+
+
+Route::get('/dashboard','AppRegisterController@index');
+
+Route::post('/store','AppRegisterController@store');
 
 Route::get('test', function() {
     return view('test');
@@ -30,3 +29,8 @@ Route::get('test', function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('/upload','StorageServiceController@upload')->middleware('uploadGuard');
+Route::post('/download','StorageServiceController@download');
+Route::post('/delete','StorageServiceController@delete');
