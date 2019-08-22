@@ -17,12 +17,12 @@ class StorageServiceController extends Controller
         
         $now = Carbon::now();
         $storage_path = $now->year . '/' . $now->month;
-        $sub_path = request()->input('sub_path') ? '/'. request()->input('sub_path') . '/' : '/';
+        $sub_path = request()->input('sub_path') ? (request()->input('sub_path') . '/') : '/';
 
         $state = request()->input('state');
         $app = request()->input('app');
 
-        $app_folder = $app['app_name'] . $sub_path . $storage_path;
+        $app_folder = $app['app_name'] . '/'. $sub_path . $storage_path;
 
         if ($state === 'public')
         {
@@ -30,9 +30,9 @@ class StorageServiceController extends Controller
         }else {
             $path = $app_folder;
         }
-
         if(request()->hasFile('file')) {
             $file_path = request()->file('file')->store($path);
+            // $file_path = request()->file('file')->storeAs($path, Carbon::now()->format('dmYHis') .'_' .request()->input('file_name'));
             $file_info = pathinfo($file_path);
             $url = $state === 'public' ? Storage::url($file_path) : null;
 

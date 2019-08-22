@@ -61,6 +61,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'uploadGuard' => \App\Http\Middleware\uploadGuard::class,
+        'downloadAndDeleteGuard' => \App\Http\Middleware\downloadAndDeleteGuard::class,
     ];
 
     /**
