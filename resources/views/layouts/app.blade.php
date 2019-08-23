@@ -3,44 +3,29 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="{{url('/css/bootstrap-4.3.1/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ url('/css/bootstrap-4.3.1/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url('/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <title>@yield('title')</title>
     </head>
     <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-info shadow-sm sticky-top">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <i class="fas fa-home"></i> Register Application to Storage Service
-                    </a>
-                
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                        <!-- Right Side Of Navbar -->
-                       
-                        @auth
-                        <ul class="navbar-nav ml-auto">
-                    
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                           
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">Logout</a>
-                            </li>
-                        </ul>
-                        <i class="fas fa-sign-out-alt"></i>
-                        @endauth
-                    </div>
-                </div>
-            </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><i class="fa fa-archive"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+        <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-user-circle-o"></i> n.ngnapat@gmail.com</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-sign-out"></i> Sign out</a>
+        </li>
+        </ul>
+    </div>
+    </nav>
 
         <div class="container">
            

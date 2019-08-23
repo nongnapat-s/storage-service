@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserList extends Model
 {
     protected $fillable = [ 
-        'id',
-        'email'
-        
+        'email',
+        'role'
     ];
 }

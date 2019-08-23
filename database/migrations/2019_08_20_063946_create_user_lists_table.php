@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use App\UserList;
 class CreateUserListsTable extends Migration
 {
     /**
@@ -15,9 +15,18 @@ class CreateUserListsTable extends Migration
     {
         Schema::create('user_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('email')->nullable();
+            $table->string('email');
+            $table->string('role');
             $table->timestamps();
         });
+
+        $admins = array(
+                    ['email' => 'n.ngnapat@gmail.com', 'role' => 'Admin'],
+                  );
+
+        foreach($admins as $admin){
+            UserList::create($admin);
+        }
     }
 
     /**

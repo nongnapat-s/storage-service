@@ -14,9 +14,9 @@ Route::get('/', function () {
         return view('welcome');
 });
 
-Route::get('/user_list','UserListController@index');
+Route::get('/user-lists/index','UserListsController@index');
 
-Route::post('/storeUserList','UserListController@store');
+Route::post('/user-lists/store','UserListsController@store');
 
 
 Route::get('/dashboard','AppRegisterController@index');
