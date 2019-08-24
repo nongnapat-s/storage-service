@@ -17,8 +17,8 @@
             </button>
         </div>
     @endif  
-    <h2>Users</h2> <hr/>
-    <form action="{{url('/user-lists/store')}}" method="post">
+    <h2>User List</h2> <hr/>
+    <form action="{{url('/user-list/store')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
         <div class="form-group">
             <input 

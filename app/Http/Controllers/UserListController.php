@@ -5,17 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\UserList;
 
-class UserListsController extends Controller
+class UserListController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        return $this->middleware('adminOnly');
+    }
+    
     public function index()
     {
         $users = UserList::all();
-        return view('users-list.index')->with(['users' => $users]);
+        return view('user-list.index')->with(['users' => $users]);
     }
 
     /**

@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'uploadGuard' => \App\Http\Middleware\uploadGuard::class,
         'downloadAndDeleteGuard' => \App\Http\Middleware\downloadAndDeleteGuard::class,
+        'adminOnly' => \App\Http\Middleware\adminOnly::class,
     ];
 
     /**
