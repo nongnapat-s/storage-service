@@ -22,12 +22,12 @@
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 @if(Auth::user())
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-user-circle-o"></i> {{ Auth::user()->email }}</a>
+                    <button class="btn btn-outline" type="submit" ><i class="fa fa-user-circle-o"></i> {{ Auth::user()->email }}</button>
                 </li>
                 <li class="nav-item">
                     <form action="{{ url('/logout') }}" method="post" class="mb-0">
                         @csrf
-                        <button class="btn btn-outline" type="submit" type="submit" ><i class="fa fa-sign-out"></i> Sign out</button>
+                        <button class="btn btn-outline" type="submit" ><i class="fa fa-sign-out"></i> Sign out</button>
                     </form>
                 </li>
                 @endif 
@@ -36,7 +36,32 @@
     </nav>
     <div class="container">
         <div class="col-12 mt-4">
-                @yield('content')
+            @if($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><i class="fa fa-check-circle"></i> </strong>  
+                    {{ $message }}
+                </div>
+            @endif  
+            @if($message = Session::get('error'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><i class="fa fa-exclamation-circle"></i> Success !</strong>  
+                    {{ $message }}
+                </div>
+            @endif 
+            
+            @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong><i class="fa fa-exclamation-circle"></i> Errors !</strong>  
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </div>
+            @endif
+            
+            @yield('content')
         </div>
     </div>
     <footer>

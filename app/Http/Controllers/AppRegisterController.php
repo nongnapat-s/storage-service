@@ -16,6 +16,12 @@ class AppRegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+
     public function index()
     {
        // $apps = AppRegister::all();
@@ -43,6 +49,11 @@ class AppRegisterController extends Controller
      */
     public function store(Request $request)
     { 
+        // validate  app name
+        $request->validate([
+            'app_name' => 'unique:app_registers'
+        ]);
+
         $continue = true;
         while($continue)
         {

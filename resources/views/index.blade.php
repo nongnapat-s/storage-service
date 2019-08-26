@@ -1,16 +1,6 @@
 @extends('layouts.app')
 @section('title','Register Application To Storage Service')
 @section('content')
-    @if($message = Session::get('success'))
-        <div class="alert alert-success">
-            {{ $message }}
-        </div>
-    @endif  
-    @if($message = Session::get('error'))
-        <div class="alert alert-danger">
-            {{ $message }}
-        </div>
-    @endif  
     <h3>Register Application to Storage Service</h3><hr/>
     <form action="{{url('/store')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >

@@ -1,22 +1,6 @@
 @extends('layouts.app')
 @section('title','Register Application To Storage Service')
-@section('content')
-    @if($message = Session::get('success'))
-        <div class="alert alert-success">
-            {{ $message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif  
-    @if($message = Session::get('error'))
-        <div class="alert alert-danger">
-            {{ $message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif  
+@section('content') 
     <h2>User List</h2> <hr/>
     <form action="{{url('/user-list/store')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
