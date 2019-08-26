@@ -43,16 +43,12 @@ class UserListController extends Controller
     public function store(Request $request)
     {
 
-        $duplicate = UserList::where('email', $request->email)->first();
-        if($duplicate === null)
-        {
-            $userList=\App\UserList::create($request->all());
-            return redirect()->back()->with('success','Create Successfully');
-        }else{
-            return redirect()->back()->with('error','Duplicate Email');
-        }
-     
+        $request->validate([
+            'email' => 'unique:user_lists',
+        ]);
         
+        $userList=\App\UserList::create($request->all());
+        return redirect()->back()->with('success','Create Successfully');        
     }
 
     /**

@@ -14,11 +14,11 @@
         <div class="form-group">
             <label class="font-weight-bold" for="role">Role :</label>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="admin" name="role" value="Admin">
+                <input type="radio" class="custom-control-input" id="admin" name="role" value="Admin" required/>
                 <label class="custom-control-label" for="admin">Admin</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="user" name="role" value="User">
+                <input type="radio" class="custom-control-input" id="user" name="role" value="User" required/>
                 <label class="custom-control-label" for="user">User</label>
             </div> 
         </div>

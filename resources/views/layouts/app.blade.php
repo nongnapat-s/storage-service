@@ -39,22 +39,15 @@
             @if($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong><i class="fa fa-check-circle"></i> </strong>  
+                    <strong><i class="fa fa-check-circle"></i> Success </strong>  
                     {{ $message }}
                 </div>
             @endif  
-            @if($message = Session::get('error'))
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong><i class="fa fa-exclamation-circle"></i> Success !</strong>  
-                    {{ $message }}
-                </div>
-            @endif 
             
             @if ($errors->any())
             <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong><i class="fa fa-exclamation-circle"></i> Errors !</strong>  
+                <strong><i class="fa fa-exclamation-circle"></i> Errors </strong>  
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
