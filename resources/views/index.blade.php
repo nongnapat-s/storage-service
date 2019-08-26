@@ -1,6 +1,23 @@
 @extends('layouts.app')
 @section('title','Register Application To Storage Service')
 @section('content')
+    @if($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong><i class="fa fa-check-circle"></i> Success </strong>  
+            {{ $message }}
+        </div>
+    @endif  
+
+    @if ($errors->any())
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong><i class="fa fa-exclamation-circle"></i> Errors </strong>  
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </div>
+    @endif
     <h3>Register Application to Storage Service</h3><hr/>
     <form action="{{url('/store')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >

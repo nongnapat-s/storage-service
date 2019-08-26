@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\UserList;
-class CreateUserListTable extends Migration
+class CreateUserListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -28,7 +28,6 @@ class CreateUserListTable extends Migration
             UserList::create($admin);
         }
     }
-
     /**
      * Reverse the migrations.
      *

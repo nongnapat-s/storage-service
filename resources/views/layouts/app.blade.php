@@ -35,25 +35,7 @@
         </div>
     </nav>
     <div class="container">
-        <div class="col-12 mt-4">
-            @if($message = Session::get('success'))
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong><i class="fa fa-check-circle"></i> Success </strong>  
-                    {{ $message }}
-                </div>
-            @endif  
-            
-            @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong><i class="fa fa-exclamation-circle"></i> Errors </strong>  
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </div>
-            @endif
-            
+        <div class="col-12 mt-4">         
             @yield('content')
         </div>
     </div>
