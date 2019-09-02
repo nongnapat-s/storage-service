@@ -33,4 +33,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/upload','StorageServiceController@upload')->middleware('uploadGuard');
 Route::post('/download','StorageServiceController@download')->middleware('downloadAndDeleteGuard');
+Route::get('/download/{id}','StorageServiceController@download');
 Route::post('/delete','StorageServiceController@delete')->middleware('downloadAndDeleteGuard');
