@@ -50,9 +50,9 @@ class StorageServiceController extends Controller
             return ['reply_code' => 1 , 'reply_text' => 'no file'];
     }
 
-    public function download()
+    public function download($id)
     {
-        $file = File::find(request()->input('id'));
+        $file = File::find($id);
         return Storage::download($file->path . '/' . $file->name);
     }
 
