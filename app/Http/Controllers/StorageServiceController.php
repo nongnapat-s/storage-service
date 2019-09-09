@@ -43,23 +43,25 @@ class StorageServiceController extends Controller
             $file->type = $file_info['extension'];
             $file->size = Storage::size($file_path);
             $file->save();
-            
-            return ['reply_code' => 0 , 'reply_text' => 'OK', 'file' => $file, 'url' => $url];
+            $file['url'] = $url;
+            return $file;
         }
         else    
             return ['reply_code' => 1 , 'reply_text' => 'no file'];
     }
 
-    public function download($id)
+    public function download($slug)
     {
-        $file = File::find($id);
+        $file = File::where('slug', $slug)->first();
         return Storage::download($file->path . '/' . $file->name);
     }
 
     public function delete()
     {
-        $file = File::find(request()->input('id'));
+        $file = File::where('slug', request()->input('slug'))->first();
         Storage::delete($file->path . '/' . $file->name);
+        $file->deleted = true;
+        $file->update();
         return ['reply_code' => 0 , 'reply_text' => 'OK'];
     }
 }

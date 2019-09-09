@@ -18,7 +18,7 @@ class downloadAndDeleteGuard
     {
         if (!$request->header('token') || 
         !$request->header('secret') || 
-        !$request->has('id'))
+        !$request->has('slug'))
             return response('incomplete request', 400);
         
         $app = AppRegister::where('token', $request->header('token'))->first();
@@ -30,7 +30,7 @@ class downloadAndDeleteGuard
 
         $request->merge([
             'app' => $app,
-            'id' => $request->id,
+            'slug' => $request->slug,
         ]);
 
         return $next($request);
