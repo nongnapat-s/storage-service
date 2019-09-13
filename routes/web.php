@@ -18,19 +18,15 @@ Route::get('/user-list','UserListController@index');
 
 Route::post('/user-list/store','UserListController@store');
 
-
 Route::get('/dashboard','AppRegisterController@index');
 
 Route::post('/store','AppRegisterController@store');
 
-Route::get('test', function() {
-    return view('test');
-});
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::post('/upload','StorageServiceController@upload')->middleware('uploadGuard');
 Route::get('/download/{slug}','StorageServiceController@download');
 Route::post('/delete','StorageServiceController@delete')->middleware('downloadAndDeleteGuard');
+
+Route::post('/storage-service','StorageServiceController');

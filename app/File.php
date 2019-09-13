@@ -8,7 +8,13 @@ use Ramsey\Uuid\Uuid;
 class File extends Model
 {
     protected $fillable  = [ 
-        'slug'
+        'slug',
+        'app_id',
+        'path',
+        'name',
+        'type',
+        'size',
+        'url'
     ];
 
     public function __construct($attributes = [])

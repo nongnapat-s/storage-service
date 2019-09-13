@@ -174,6 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\StorageServiceProvider::class,
 
     ],
 
@@ -228,4 +229,5 @@ return [
 
     ],
 
+    'STORAGE_SERVICE_PROVIDER' => env('STORAGE_SERVICE_PROVIDER', 'App\Services\StorageService')
 ];

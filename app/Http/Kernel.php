@@ -63,6 +63,8 @@ class Kernel extends HttpKernel
         'uploadGuard' => \App\Http\Middleware\uploadGuard::class,
         'downloadAndDeleteGuard' => \App\Http\Middleware\downloadAndDeleteGuard::class,
         'adminOnly' => \App\Http\Middleware\adminOnly::class,
+        
+        'storageServiceGuard' => \App\Http\Middleware\storageServiceGuard::class,
     ];
 
     /**

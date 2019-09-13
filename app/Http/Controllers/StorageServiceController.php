@@ -8,46 +8,18 @@ use App\File;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+
+use App\Contracts\StorageServiceCaller;
+
 class StorageServiceController extends Controller
 {
-    
-    public function upload()
+    public function __construct()
     {
-        if (!request()->input('app') || !request()->input('state')) return response('not allowed', 401);
-        
-        $now = Carbon::now();
-        $storage_path = $now->year . '/' . $now->month;
-        $sub_path = request()->input('sub_path') ? '/'. request()->input('sub_path') . '/' : '/';
-
-        $state = request()->input('state');
-        $app = request()->input('app');
-
-        $app_folder = $app['app_name'] . $sub_path . $storage_path;
-
-        if ($state === 'public')
-        {
-            $path = '/public/'. $app_folder;
-        }else {
-            $path = $app_folder;
-        }
-
-        if(request()->hasFile('file')) {
-            $file_path = request()->file('file')->store($path);
-            $file_info = pathinfo($file_path);
-            $url = $state === 'public' ? Storage::url($file_path) : null;
-
-            $file = new File;
-            $file->app_id = $app['id'];
-            $file->path = $file_info['dirname'];
-            $file->name = $file_info['basename'];
-            $file->type = $file_info['extension'];
-            $file->size = Storage::size($file_path);
-            $file->save();
-            $file['url'] = $url;
-            return $file;
-        }
-        else    
-            return ['reply_code' => 1 , 'reply_text' => 'no file'];
+        $this->middleware('storageServiceGuard'); 
+    }
+    public function __invoke(StorageServiceCaller $caller)
+    {
+        return $caller->upload(request()->all());
     }
 
     public function download($slug)

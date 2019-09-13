@@ -21,6 +21,7 @@ class CreateFilesTable extends Migration
             $table->string('name');
             $table->string('type');
             $table->string('size');
+            $table->string('url')->nullable();
             $table->boolean('deleted')->default(0);
             $table->timestamps();
         });
