@@ -3,89 +3,134 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link rel="stylesheet" href="{{ url('/css/bootstrap-4.3.1/css/bootstrap.min.css') }}">
+        <title>Storage Service</title>
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
+
+        .word {
+            font-family: 'Anton', sans-serif;
+            perspective: 1000px; 
+            perspective-origin: 200px 40px;
+        }
+
+        .word span {
+            cursor: pointer;
+            display: inline-block;
+            font-size: 80px;
+            user-select: none;
+            line-height: .8;
+        }
+
+        .word span:nth-child(1).active {
+            animation: balance 1.5s ease-out;
+            transform-origin: 0% 100% 0px;
+        }
+
+        @keyframes balance {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            
+            30%, 60% {
+                transform: rotate(-45deg);
+            }
+        }
+
+        /* Other styles */
+        body {
+            /* background-color: skyblue; */
+            /* color: #fff; */
+            display: flex;
+            font-family: 'Roboto', sans-serif;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .fixed {
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        footer i {
+            color: red;
+        }
+
+        footer a {
+            color: #3C97BF;
+            text-decoration: none;
+        }
+
+        a, a:hover {
+            color: black;
+            text-decoration: none !important;
+            text-transform: uppercase !important;
+        }
+    </style>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="centered vertical-center">
             <div class="content">
-                <h1>
-                    Register Application To Storage Service 
-                </h1>
-                <div class="links m-b-md">
-                    
-                    <small
-                      style="padding: 0px 10px 0px 10px; font-size: 22px; color: #E67E22; border-style: solid; border-radius: 25px;">
-                         <a href="{{ route('login') }}">Login</a>
-                    </small>
-                
+                <div class="word">
+                    <span>S</span>
+                    <span>T</span>
+                    <span>O</span>
+                    <span>R</span>
+                    <span>A</span>
+                    <span>G</span>
+                    <span>E</span>
+                    &emsp;
+                    <span>S</span>
+                    <span>E</span>
+                    <span>R</span>
+                    <span>V</span>
+                    <span>I</span>
+                    <span>C</span>
+                    <span>E</span>
+                </div>            
+                <div style="text-align: right;">
+                    Let me keep your files.
                 </div>
-                <div class="links m-b-md">
-                    <small
-                      style="padding: 0px 10px 0px 10px; font-size: 22px; color: #E67E22; border-style: solid; border-radius: 25px;">
-                    <a href="{{ route('register') }}">Register</a>
-                    </small>
-                   
+                <div style="text-align: center;">
+                    <a href="{{ route('login') }}" role="button" class="btn btn-outline-dark"> Login </a>
+                    or
+                    <a href="{{ route('register') }}" role="button" class="btn btn-outline-secondary"> Register </a>
                 </div>
-               
             </div>
         </div>
+        <footer>
+            <p></p>
+        </footer>
     </body>
+    <script>
+        let spans = document.querySelectorAll('.word span');
+        spans.forEach((span, idx) => {
+            span.addEventListener('click', (e) => {
+                e.target.classList.add('active');
+            });
+            span.addEventListener('animationend', (e) => {
+                e.target.classList.remove('active');
+            });
+            
+            // Initial animation
+            setTimeout(() => {
+                span.classList.add('active');
+            }, 750 * (idx+1))
+        });
+    </script>
 </html>

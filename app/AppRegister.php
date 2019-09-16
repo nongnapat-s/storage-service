@@ -10,6 +10,7 @@ class AppRegister extends Model
     protected $fillable = [ 
         'id',
         'app_name',
+        'token',
         'secret',
         'user_id',
         'size'

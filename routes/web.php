@@ -15,12 +15,12 @@ Route::get('/', function () {
 });
 
 Route::get('/user-list','UserListController@index');
-
 Route::post('/user-list/store','UserListController@store');
 
-Route::get('/dashboard','AppRegisterController@index');
 
-Route::post('/store','AppRegisterController@store');
+Route::get('/dashboard', 'AppRegisterController@index');
+Route::post('/store', 'AppRegisterController@store');
+Route::post('/delete/{id}', 'AppRegisterController@destroy');
 
 Auth::routes();
 

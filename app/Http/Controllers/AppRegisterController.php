@@ -24,10 +24,9 @@ class AppRegisterController extends Controller
 
     public function index()
     {
-       // $apps = AppRegister::all();
         $apps = DB::table('app_registers')
-        ->where('user_id',\Auth::id())
-        ->get();
+                    ->where('user_id',\Auth::id())
+                    ->get();
         return view('index')->with([ 'apps' => $apps ]);  
     }
 
@@ -51,15 +50,15 @@ class AppRegisterController extends Controller
     { 
         // validate  app name
         $request->validate([
-            'app_name' => 'unique:app_registers'
+            'app_name' => 'required|alpha|unique:app_registers'
         ]);
 
         $continue = true;
         while($continue)
         {
             $token = Str::random(60);
-            $duplicate = AppRegister::where('token', $token)->first();
-            if($duplicate === null)
+            $duplicate_token = AppRegister::where('token', $token)->first();
+            if($duplicate_token === null)
             {
                 $continue = false;
             }
@@ -71,55 +70,14 @@ class AppRegisterController extends Controller
             return redirect()->back()->with('error','Not Permission your Email');
         }
 
-        $register_app = AppRegister::create(request()->all()+ ['user_id' => \Auth::id()]);
-        $register_app->token = $token;
-        $register_app->save();
+        $register_app = AppRegister::create(request()->all() + ['token' => $token , 'user_id' => \Auth::id()] );
 
         return redirect()->back()->with('success','Create Successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        AppRegister::destroy($id);
+        return redirect()->back()->with('success','Delete Successfully');
     }
 }
