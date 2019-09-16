@@ -11,6 +11,7 @@ class File extends Model
         'slug',
         'app_id',
         'path',
+        'state',
         'name',
         'type',
         'size',

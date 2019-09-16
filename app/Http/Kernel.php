@@ -60,8 +60,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'uploadGuard' => \App\Http\Middleware\uploadGuard::class,
-        'downloadAndDeleteGuard' => \App\Http\Middleware\downloadAndDeleteGuard::class,
         'adminOnly' => \App\Http\Middleware\adminOnly::class,
         
         'storageServiceGuard' => \App\Http\Middleware\storageServiceGuard::class,

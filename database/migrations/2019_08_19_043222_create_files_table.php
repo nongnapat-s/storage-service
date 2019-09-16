@@ -18,6 +18,7 @@ class CreateFilesTable extends Migration
             $table->integer('app_id');
             $table->string('slug');
             $table->string('path');
+            $table->string('state');
             $table->string('name');
             $table->string('type');
             $table->string('size');

@@ -24,9 +24,5 @@ Route::post('/store','AppRegisterController@store');
 
 Auth::routes();
 
-
-Route::post('/upload','StorageServiceController@upload')->middleware('uploadGuard');
-Route::get('/download/{slug}','StorageServiceController@download');
-Route::post('/delete','StorageServiceController@delete')->middleware('downloadAndDeleteGuard');
-
 Route::post('/storage-service','StorageServiceController');
+Route::get('/download/{slug}','StorageServiceController@download');
