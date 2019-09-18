@@ -20,8 +20,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/upload',
-        '/download',
-        '/delete',
-        '/storage-service'
+        '/update',
+        '/delete-file',
+        '/delete-folder'
     ];
 }

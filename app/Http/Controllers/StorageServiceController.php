@@ -2,42 +2,55 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\AppRegister;
 use App\File;
+use App\Services\StorageService;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
-use App\Contracts\StorageServiceCaller;
 
 class StorageServiceController extends Controller
 {
+    protected $states = [
+        'public',
+        'local'
+    ];
+
     public function __construct()
     {
         $this->middleware('storageServiceGuard')->except('download');
     }
-    public function __invoke(StorageServiceCaller $caller)
+  
+    public function store()
     {
-        switch (request()->input('function')) {
-            case 'upload':
-                return $caller->upload();
-            case 'download':
-                return $caller->download();
-            case 'put-file':
-                return $caller->putFile();
-            case 'delete-file':
-                return $caller->deleteFile();
-            case 'delete-folder':
-                return $caller->deleteFolder();
-            default:
-                return response('error', 400);
-        }
+        if  ( !request()->file('file') || 
+              !request()->input('state') || 
+              !in_array(request()->input('state'), $this->states)
+            ) return response('incomplete request', 400);
+
+        return (new StorageService)->upload();
     }
 
-    public function download($slug)
+    public function update()
+    {
+        if (!request()->file('file') || !request()->input('slug')) return response('incomplete request', 400);
+        
+        return (new StorageService)->update();
+    }
+
+    public function show($slug)
     {
         $file = File::where('slug', $slug)->first();
         return Storage::download($file->path . '/' . $file->name . '.' . $file->type);
+    }
+
+    public function deleteFile()
+    {
+        return ['reply_text' => 'delete'];
+    }
+
+    public function deleteFolder()
+    {
+        return ['reply_text' => 'delete'];
     }
 }
