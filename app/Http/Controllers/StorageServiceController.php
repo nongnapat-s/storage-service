@@ -46,11 +46,15 @@ class StorageServiceController extends Controller
 
     public function deleteFile()
     {
+        if(!request()->input('slug')) return response('incomplete request', 400);
+
         return (new StorageService)->deleteFile();
     }
 
     public function deleteFolder()
     {
+        if(!request()->input('folder') || !request()->input('state')) return response('incomplete request', 400);
+        
         return (new StorageService)->deleteFolder();
     }
 }
