@@ -71,7 +71,6 @@ class StorageService {
     }
 
     public function deleteFile() {
-        return ['reply_code' => 0, 'reply_text' => 'OK'];
         $file = File::where('slug', request()->input('slug'))->first();
 
         if (Storage::delete($file->path . '/' . $file->name . '.' . $file->type) === false) {  // delete file;
@@ -85,7 +84,6 @@ class StorageService {
     }
 
     public function deleteFolder() {
-        return ['reply_code' => 0, 'reply_text' => 'OK'];
         $path = (request()->input('state') === 'public' ? 'public/': '/') . request()->input('app_name') . request()->folder;
 
         if (Storage::deleteDirectory($path) === false) { // not found folder

@@ -18,7 +18,7 @@ class StorageServiceController extends Controller
 
     public function __construct()
     {
-        $this->middleware('storageServiceGuard')->except('download');
+        $this->middleware('storageServiceGuard')->except('show');
     }
   
     public function store()
@@ -31,6 +31,12 @@ class StorageServiceController extends Controller
         return (new StorageService)->upload();
     }
 
+    public function show($slug)
+    {
+        $file = File::where('slug', $slug)->first();
+        return Storage::download($file->path . '/' . $file->name . '.' . $file->type);
+    }
+
     public function update()
     {
         if (!request()->file('file') || !request()->input('slug')) return response('incomplete request', 400);
@@ -38,19 +44,13 @@ class StorageServiceController extends Controller
         return (new StorageService)->update();
     }
 
-    public function show($slug)
-    {
-        $file = File::where('slug', $slug)->first();
-        return Storage::download($file->path . '/' . $file->name . '.' . $file->type);
-    }
-
     public function deleteFile()
     {
-        return ['reply_text' => 'delete'];
+        return (new StorageService)->deleteFile();
     }
 
     public function deleteFolder()
     {
-        return ['reply_text' => 'delete'];
+        return (new StorageService)->deleteFolder();
     }
 }

@@ -16,6 +16,7 @@ class storageserviceGuard
      */
     public function handle($request, Closure $next)
     {
+        \Log::info($request->header('token'));
         if (
             // token is required
             !$request->header('token') || 
@@ -26,7 +27,7 @@ class storageserviceGuard
 
         // validate token and secret
         $app = AppRegister::where('token', $request->header('token'))->first();
-        if (!$app || !Hash::check($request->header('secret'), $app['secret']))return response('not allowed', 401);
+        if (!$app || !Hash::check($request->header('secret'), $app['secret'])) return response('not allowed', 401);
 
         $request->merge([ 'app_id' => $app->id, 'app_name' => $app->app_name ]); // merge app_id and app_name to request
 

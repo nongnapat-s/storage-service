@@ -22,10 +22,9 @@ Route::get('/dashboard', 'AppRegisterController@index');
 Route::post('/store', 'AppRegisterController@store');
 Route::post('/delete/{id}', 'AppRegisterController@destroy');
 
-
-
 Route::post('/upload','StorageServiceController@store');
 Route::put('/update', 'StorageServiceController@update');
 Route::delete('/delete-file','StorageServiceController@deleteFile');
 Route::delete('/delete-folder', 'StorageServiceController@deleteFolder');
-Route::get('/download/{slug}','StorageServiceController@download');
+
+Route::get('/download/{slug}','StorageServiceController@show');
