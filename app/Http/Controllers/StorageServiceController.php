@@ -34,6 +34,9 @@ class StorageServiceController extends Controller
     public function show($slug)
     {
         $file = File::where('slug', $slug)->first();
+        
+        if (!$file || $file->deleted) return ['reply_code' => 2, 'reply_text' => 'no current file in storage'];
+        
         return Storage::download($file->path . '/' . $file->name . '.' . $file->type);
     }
 

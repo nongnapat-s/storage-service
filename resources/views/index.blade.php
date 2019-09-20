@@ -45,6 +45,7 @@
             <h4>
                 <form action="{{ url('delete/'. $app->id ) }}" method="POST" style="margin-bottom:0px;">
                     @csrf
+                    <input type="hidden" name="_method" value="delete"/>
                     <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button> <i style=" font-size: 15px;" class="fa fa-ellipsis-v"></i>
                     <span class="badge badge-pill badge-secondary">App name : <span class="font-italic blue">{{ $app->app_name }}</span></span>
                     <span class="badge badge-pill badge-secondary">Token : <span class="font-italic blue">{{ $app->token }}</span></span>
