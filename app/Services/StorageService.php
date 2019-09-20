@@ -43,7 +43,7 @@ class StorageService {
 
         $file = File::where('slug', request()->input('slug'))->first(); 
 
-        if (!$file || Storage::delete($file->path . '/' . $file->name . '.' . $file->type) === false)
+        if (!$file || Storage::delete($file->path . '/' . $file->name . '.' . $file->type) === false) //check file and current file in the storage
             return ['reply_code' => 2, 'reply_text' => 'no current file in storage'];
         // store new file 
         $file_path = request()->file('file')->store($file->path);
@@ -66,12 +66,12 @@ class StorageService {
 
     public function deleteFile() {
         $file = File::where('slug', request()->input('slug'))->first();
-
-        if(!$file || $file->deleted) return ['reply_code' => 1, 'reply_text' => 'no file'];
-
-        if(!$file->app_id !== request()->input('app_id')) return ['reply_code' => 3, 'reply_text' => "Don't have permission to delete file"];
-
-        if (Storage::delete($file->path . '/' . $file->name . '.' . $file->type) === false)
+        //check file or file was deleted
+        if(!$file || $file->deleted) return ['reply_code' => 1, 'reply_text' => 'no file']; 
+        //check permission to delete file
+        if(!$file->app_id !== request()->input('app_id')) return ['reply_code' => 3, 'reply_text' => "Don't have permission to delete file"]; 
+        // check can delete file or not
+        if (Storage::delete($file->path . '/' . $file->name . '.' . $file->type) === false) 
             return ['reply_code' => 2, 'reply_text' => 'no current file in storage'];
 
         $file->deleted = true;  //update deleted
@@ -81,8 +81,10 @@ class StorageService {
     }
 
     public function deleteFolder() {
-        $path = (request()->input('state') === 'public' ? 'public/': '/') . request()->input('app_name') . request()->folder;
+        //check state of folder
+        $path = (request()->input('state') === 'public' ? 'public/': '/') . request()->input('app_name') . request()->folder; 
 
+        //check can delete folder or not 
         if (Storage::deleteDirectory($path) === false) return ['reply_code' => 3, 'reply_text' => 'no folder'];
 
         return ['reply_code' => 0, 'reply_text' => 'OK'];
