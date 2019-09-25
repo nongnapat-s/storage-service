@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('title','Register Application To Storage Service')
 @section('content') 
+
+@if (isset($users))
+    <!-- {{$users}} -->
+@endif
+<br>
+@if (isset($user_selected))
+    <!-- {{"selectd=".$user_selected}} -->
+   
+@endif
     @if($message = Session::get('success'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -20,23 +29,29 @@
     @endif
     
     <h2>User List</h2> <hr/>
-    <form action="{{url('/user-list/store')}}" method="post">
+    @if (isset($user_selected))
+         <form action="{{url('/user-list/update',$user_selected->id)}}" method="post" enctype="multipart/form-data" >  
+        <input type="hidden" name="_method" value="PUT">
+    @else
+        <form action="{{url('/user-list/store')}}" method="post" enctype="multipart/form-data"  >
+    @endif
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
         <div class="form-group">
             <input 
                 type="text" 
                 class="form-control {{ !empty(Session::get('status')['app_name']) ? 'is-invalid' : ''}}" 
                 name="email" 
+                value="{{old('email' , isset($user_selected) ? $user_selected->email : '' )}}"
                 placeholder="Email" required/>
         </div>
         <div class="form-group">
             <label class="font-weight-bold" for="role">Role :</label>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="admin" name="role" value="Admin" required/>
+                <input type="radio" class="custom-control-input" id="admin" name="role" value="Admin" {{old('role',isset($user_selected) ? $user_selected->role :'')== 'Admin' ? 'checked':''  }} required/>
                 <label class="custom-control-label" for="admin">Admin</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="user" name="role" value="User" required/>
+                <input type="radio" class="custom-control-input" id="user" name="role" value="User" {{old('role',isset($user_selected) ? $user_selected->role :'')== 'User' ? 'checked':''  }} required/>
                 <label class="custom-control-label" for="user">User</label>
             </div> 
         </div>
@@ -58,8 +73,12 @@
             <td>{{$user->email}}</td>
             <td>{{$user->role}}</td>
             <td class="text-center">
-                <button type="button" class="btn btn-info"><i class="fa fa-wrench"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            <form action="{{url('/user-list/edit',$user->id)}}" method="get">  
+                    <button type="submit" class="btn btn-info"><i class="fa fa-wrench"></i></button>
+                </form>
+                <form action="{{url('/user-list/delete',$user->id)}}" method="get">  
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                </form>
             </td>
         </tr>
     @endforeach

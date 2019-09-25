@@ -29,3 +29,9 @@ Route::delete('/delete-file','StorageServiceController@deleteFile');
 Route::delete('/delete-folder', 'StorageServiceController@deleteFolder');
 
 Route::get('/files/{slug}','StorageServiceController@show');
+
+//user-list edit,delete
+Route::get('/user-list/delete/{id}','UserListController@destroy');
+Route::get('/user-list/edit/{id}','UserListController@edit');
+Route::post('/user-list/update','UserListController@update');
+Route::put('/user-list/update/{id}','UserListController@update');

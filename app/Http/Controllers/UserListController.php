@@ -70,7 +70,15 @@ class UserListController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $user_list = DB::table('user_lists')->where('id',$id)->first();
+        $users = UserList::all();
+        $user_selected = UserList::where('id',$id)->first();
+        if(empty($user_selected)){
+         
+             return "Not Found user_list id=".$id;
+          }
+      //  return $user_list;
+        return  view('/user-list/index')->with(['users'=> $users,'user_selected'=>$user_selected] );
     }
 
     /**
@@ -82,7 +90,15 @@ class UserListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          //return $request ->all();
+          $user_selected =  UserList::find($id);
+          if(empty($user_selected)){
+            // return "Not Found Task=".$id;
+             return redirect()->back()->with('success','Not Found');
+         }
+          $user_selected->update($request->all());
+         
+          return redirect()->back()->with('success','Update Detail Successfully');
     }
 
     /**
@@ -93,6 +109,12 @@ class UserListController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user_list = UserList::find($id);
+        $user_list->delete();
+
+       // $user_list = new \App\Task();
+       $users = UserList::all();
+      
+       return redirect()->back()->with('success','Delete Successfully');
     }
 }
