@@ -28,7 +28,7 @@ class StorageServiceController extends Controller
               !in_array(request()->input('state'), $this->states)
             ) return response('incomplete request', 400);
 
-        return (new StorageService)->upload();
+        return response((new StorageService)->upload(),200);
     }
 
     public function show($slug)
@@ -44,20 +44,20 @@ class StorageServiceController extends Controller
     {
         if (!request()->file('file') || !request()->input('slug')) return response('incomplete request', 400);
         
-        return (new StorageService)->update();
+        return response((new StorageService)->update(),200);
     }
 
     public function deleteFile()
     {
         if(!request()->input('slug')) return response('incomplete request', 400);
 
-        return (new StorageService)->deleteFile();
+        return response((new StorageService)->deleteFile(), 200);
     }
 
     public function deleteFolder()
     {
         if(!request()->input('folder') || !request()->input('state')) return response('incomplete request', 400);
         
-        return (new StorageService)->deleteFolder();
+        return response((new StorageService)->deleteFolder(),200);
     }
 }
