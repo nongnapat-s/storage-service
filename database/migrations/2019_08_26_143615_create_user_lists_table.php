@@ -21,9 +21,9 @@ class CreateUserListsTable extends Migration
         });
 
         $admins = array(
-                    ['email' => 'n.ngnapat@gmail.com', 'role' => 'Admin'],
-                    ['email' => 'nong_com@hotmail.com', 'role' => 'User']
-                  );
+            ['email' => 'n.ngnapat@gmail.com', 'role' => 'Admin'],
+            ['email' => 'nong_com@hotmail.com', 'role' => 'Admin'],
+        );
 
         foreach($admins as $admin){
             UserList::create($admin);
