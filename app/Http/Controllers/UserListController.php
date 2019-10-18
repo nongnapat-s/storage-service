@@ -115,6 +115,6 @@ class UserListController extends Controller
        // $user_list = new \App\Task();
        $users = UserList::all();
       
-       return redirect()->back()->with('success','Delete Successfully');
+       return redirect()->route('user-list');
     }
 }

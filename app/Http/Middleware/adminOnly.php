@@ -19,7 +19,7 @@ class adminOnly
         if(!Auth::user()) return route('login');
 
         $user = UserList::where('email', Auth::user()->email)->first();
-        if($user->role !== 'Admin') return response('not allow',401);
+        if(!$user || $user->role !== 'Admin') return response('not allow',401);
 
         return $next($request);
     }

@@ -22,6 +22,7 @@ class CreateUserListsTable extends Migration
 
         $admins = array(
                     ['email' => 'n.ngnapat@gmail.com', 'role' => 'Admin'],
+                    ['email' => 'nong_com@hotmail.com', 'role' => 'User']
                   );
 
         foreach($admins as $admin){

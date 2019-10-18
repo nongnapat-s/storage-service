@@ -73,11 +73,11 @@
             <td>{{$user->email}}</td>
             <td>{{$user->role}}</td>
             <td class="text-center">
-            <form action="{{url('/user-list/edit',$user->id)}}" method="get">  
-                    <button type="submit" class="btn btn-info"><i class="fa fa-wrench"></i></button>
-                </form>
-                <form action="{{url('/user-list/delete',$user->id)}}" method="get">  
-                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <a href="{{url('/user-list/edit',$user->id)}}" role="button" class="btn btn-info"><i class="fa fa-wrench"></i></a>
+                <button type="submit" class="btn btn-danger" onclick="document.getElementById('delete_{{ $user->id }}').submit()"><i class="fa fa-trash"></i></button>
+                <form action="{{ url('/user-list/delete',$user->id) }}" id="delete_{{ $user->id }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="_method" value="DELETE">
                 </form>
             </td>
         </tr>

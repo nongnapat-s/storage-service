@@ -15,13 +15,11 @@ Route::get('/', function () { return view('welcome'); });
 Auth::routes();
 
 // user list management
-Route::get('/user-list','UserListController@index');
+Route::get('/user-list','UserListController@index')->name('user-list');
 Route::post('/user-list/store','UserListController@store');
-Route::get('/user-list/delete/{id}','UserListController@destroy');
 Route::get('/user-list/edit/{id}','UserListController@edit');
-Route::post('/user-list/update','UserListController@update');
 Route::put('/user-list/update/{id}','UserListController@update');
-
+Route::delete('/user-list/delete/{id}','UserListController@destroy');
 // register app
 Route::get('/dashboard', 'AppRegisterController@index');
 Route::post('/store', 'AppRegisterController@store');
