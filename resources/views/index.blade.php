@@ -18,7 +18,9 @@
         @endforeach
     </div>
     @endif
-    <h3>Register Application to Storage Service</h3><hr/>
+    <h3>Register Application to Storage Service</h3>
+    <a href="">Documentation</a>
+    <hr class="mt-2"/>
     <form action="{{ url('/store') }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
         <input type="hidden" name="email" value="{{Auth::user()->email}}" >
