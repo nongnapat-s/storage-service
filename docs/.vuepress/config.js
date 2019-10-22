@@ -6,20 +6,12 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: 'https://picsum.photos/100' }]
   ],
+  markdown: {
+    lineNumbers: true
+  },
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Install', link: '/getstarted/' }
     ],
-    sidebar: [
-      ['/', 'Getting Started'],
-      {
-        title: 'Getting Started',
-        collapsable: false,
-        children: [
-          ['/getstarted/', 'Install it title']
-        ]
-      }
-    ]
   }
 }
