@@ -19,7 +19,7 @@
     </div>
     @endif
     <h3>Register Application to Storage Service</h3>
-    <a href="">Documentation</a>
+    <a href="{{ url('/docs') }}" target="_blank"><i class="fa fa-file-text-o" aria-hidden="true"></i> Documentation</a>
     <hr class="mt-2"/>
     <form action="{{ url('/store') }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >

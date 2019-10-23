@@ -35,7 +35,7 @@ class StorageService {
         ];
 
         $file = File::create($data);
-        return $file;
+        return $file + ['reply_code' => 0, 'reply_text' => 'OK'];
     }
 
     public function update() {
