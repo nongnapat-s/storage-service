@@ -1,51 +1,51 @@
 # Documentation
 ## Functions
 | Function        | Description           | route  | method
-| -------------|:-----:|:--------------------------|:----------------------|
-| [upload](#upload)    | upload files to service | `upload`| `POST` |
-| [download](#download)     |  download files to devices  |   `files/{slug}` | `GET` |
-| [store](#store) |    store files to project's storage   |    `files/{slug}`| `GET` |
-| [put-file](#put-file) |  update files in service   |   `put-file` | `POST` |
-| [delete-file](#delete-file) |    delete files in service   |  `delete-file`  | `POST` |
-| [delete-folder](#delete-folder) |   delete folder in service    |   `delete-folder` | `POST` |
+| -------------|:-----|:--------------------------|:----------------------|
+| [upload](#upload)    | Upload a file to service | `upload`| `POST` |
+| [download](#download)     |  Download a file to user's device(s)  |   `files/{slug}` | `GET` |
+| [store](#store) |    Store files to an app's storage   |    `files/{slug}`| `GET` |
+| [put-file](#put-file) |  Update an existing file in service   |   `put-file` | `POST` |
+| [delete-file](#delete-file) |    Delete a file in service   |  `delete-file`  | `POST` |
+| [delete-folder](#delete-folder) |   Delete a folder in service    |   `delete-folder` | `POST` |
 
 
 ### upload
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| file   |`true`| file contents||
-| state   |`true`| store file in public or local| allow `public` and `local`|
-| sub_folder   |`false`|add more sub folder||
+| file   |`true`| File contents||
+| state   |`true`| Store a file in public or local folder| Allow `public` and `local`|
+| sub_folder   |`false`|Add a folder under root folder ||
 
 ### download
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| slug   |`true`| uuid of file||
+| slug   |`true`| UUID of a file||
 
 ### store
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| slug   |`true`| uuid of file||
+| slug   |`true`| UUID of a file||
 
 ### put-file
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| _method   |`true`| method of puting files | method's value is `put`|
-| slug   |`true`| uuid of file||
-| file   |`true`| file contents||
+| _method   |`true`| Method of putting a file | method's value is `put`|
+| slug   |`true`| UUID of a file||
+| file   |`true`| File contents||
 
 ### delete-file
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| _method   |`true`| method of deleting files | method's value is `delete`|
-| slug   |`true`| uuid of file||
+| _method   |`true`| Method of deleting a file | method's value is `delete`|
+| slug   |`true`| UUID of a file||
 
 ### delete-folder
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| _method   |`true`| method of deleting folder | method's value is `delete`|
-| state   |`true`| delte folder in public or local allow `public` and `local`|
-| folder   |`false`| folder||
+| _method   |`true`| Method of deleting a folder | method's value is `delete`|
+| state   |`true`| Delete a folder in public or local | Allow `public` and `local`|
+| folder   |`false`| Folder's name ||
 
 ## Example of uploading file by PHP with GuzzleHttp
 ```php
