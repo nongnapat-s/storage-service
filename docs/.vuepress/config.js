@@ -1,6 +1,7 @@
 module.exports = {
-  base: '/docs/',
-  dest: '/public/docs',
+  base: 'docs',
+  router: 'docs',
+  dest: 'public/docs',
   title: 'Storage Sevice Docs',
   markdown: {
     lineNumbers: true
