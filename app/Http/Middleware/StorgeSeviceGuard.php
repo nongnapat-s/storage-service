@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\AppRegister;
 use Illuminate\Support\Facades\Hash;
-class storageserviceGuard
+class StorgeSeviceGuard
 {
     /**
      * Handle an incoming request.

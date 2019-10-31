@@ -62,7 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'adminOnly' => \App\Http\Middleware\adminOnly::class,
         
-        'storageServiceGuard' => \App\Http\Middleware\storageServiceGuard::class,
+        'storageServiceGuard' => \App\Http\Middleware\StorgeSeviceGuard::class,
     ];
 
     /**
