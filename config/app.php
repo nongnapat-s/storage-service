@@ -228,5 +228,6 @@ return [
 
     ],
 
-    'STORAGE_SERVICE_PROVIDER' => env('STORAGE_SERVICE_PROVIDER', 'App\Services\StorageService')
+    'STORAGE_SERVICE_PROVIDER' => env('STORAGE_SERVICE_PROVIDER', 'App\Services\StorageService'),
+    'FILE_SIZE_ACCEPTED' => env('FILE_SIZE_ACCEPTED', 10000000)
 ];

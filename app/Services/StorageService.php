@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
-use App\File;
+use \App\File;
 
 class StorageService {
 
@@ -35,7 +35,7 @@ class StorageService {
         ];
 
         $file = File::create($data);
-        return $file + ['reply_code' => 0, 'reply_text' => 'OK'];
+        return $file;
     }
 
     public function update() {

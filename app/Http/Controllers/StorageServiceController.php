@@ -23,11 +23,14 @@ class StorageServiceController extends Controller
   
     public function store()
     {
+        \Log::info(request()->file('file')->getSize());
         if  ( !request()->file('file') || 
               !request()->input('state') || 
               !in_array(request()->input('state'), $this->states)
             ) return response('incomplete request', 400);
-
+            
+        if (request()->file('file')->getSize() > config('app.FILE_SIZE_ACCEPTED')) return response ('The file is too large', 401);
+        
         return response((new StorageService)->upload(),200);
     }
 
