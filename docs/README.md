@@ -2,56 +2,56 @@
 ## Functions
 | Function        | Description           | route  | method
 | -------------|:-----|:--------------------------|:----------------------|
-| [upload](#upload)    | Upload a file to service | `upload`| `POST` |
-| [download](#download)     |  Download a file to user's device(s)  |   `files/{slug}` | `GET` |
-| [store](#store) |    Store files to an app's storage   |    `files/{slug}`| `GET` |
-| [put-file](#put-file) |  Update an existing file in service   |   `put-file` | `POST` |
-| [delete-file](#delete-file) |    Delete a file in service   |  `delete-file`  | `POST` |
-| [delete-folder](#delete-folder) |   Delete a folder in service    |   `delete-folder` | `POST` |
+| [upload](#upload)    | upload file ไปยัง Storage Service | `upload`| `POST` |
+| [download](#download)     | download file จาก Storage Service เข้าสู่ device |   `files/{slug}` | `GET` |
+| [store](#store) | store file จาก Storage Service เข้าสู่ folder storage ของ client |    `files/{slug}`| `GET` |
+| [put-file](#put-file) |  update file ที่อยู่แล้วใน Storage Service  |   `put-file` | `POST` |
+| [delete-file](#delete-file) | บ file ใน Storage Service   |  `delete-file`  | `POST` |
+| [delete-folder](#delete-folder) | บ folder ใน Storage Service  |   `delete-folder` | `POST` |
 
 
 ### upload
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| file   |`true`| File contents||
-| state   |`true`| Store a file in public or local folder| Allow `public` and `local`|
-| sub_folder   |`false`|Add a folder under root folder ||
+| file   |`true`| ไฟล์ที่ต้องการ upload | upload ไฟล์ได้ไม่เกินครั้ง 10 mb|
+| state   |`true`| folder ของ Storage Service ที่ต้องการเก็บไฟล์ โดยส่งคำว่า `public` หรือ `local`| หากต้องการเก็บไฟล์ที่สามารถดูผ่าน Browser ได้ให้เก็บไฟล์ไว้ที่ `public` |
+| sub_folder   |`false`| เพิ่ม sub folder ภายใต้ folder ที่สร้างขึ้นใน Storage Service  ||
 
 ### download
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| slug   |`true`| UUID of a file||
+| slug   |`true`| value ที่ใช้แทน id ของไฟล์ | จะได้รับ slug หลังจากทำการ upload ไฟล์แล้ว|
 
 ### store
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| slug   |`true`| UUID of a file||
+| slug   |`true`| value ที่ใช้แทน id ของไฟล์ ||
 
 ### put-file
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| _method   |`true`| Method of putting a file | method's value is `put`|
-| slug   |`true`| UUID of a file||
-| file   |`true`| File contents||
+| _method   |`true`| method ของการ update file โดยมีค่าเท่ากับ `put` ||
+| slug   |`true`| value ที่ใช้แทน id ของไฟล์||
+| file   |`true`| file ใหม่ที่ต้องการส่ง|
 
 ### delete-file
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| _method   |`true`| Method of deleting a file | method's value is `delete`|
-| slug   |`true`| UUID of a file||
+| _method   |`true`| method ของการลบ file โดยมีค่าเท่ากับ `delete` ||
+| slug   |`true`| value ที่ใช้แทน id ของไฟล์||
 
 ### delete-folder
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| _method   |`true`| Method of deleting a folder | method's value is `delete`|
-| state   |`true`| Delete a folder in public or local | Allow `public` and `local`|
-| folder   |`false`| Folder's name ||
+| _method   |`true`| method ของการลบ folder โดยมีค่าเท่ากับ `delete` | method's value is `delete`|
+| state   |`true`| folder ของ Storage Service ที่ต้องการลบ folderโดยส่งคำว่า `public` หรือ `local` ||
+| folder   |`false`| ชื่อของ folder ที่ต้องการลบ ||
 
 ## Example of uploading file by PHP with GuzzleHttp
 ```php
 Route::post('/upload', function() {
     $client = new GuzzleHttp\Client([
-        'base_uri' =>'https://slothme.co/storage-service/',
+        'base_uri' =>'https://little-fortune.me/storage-service/',
         'timeout'  => 8.0,
     ]);
     $response = $client->post('upload', [
@@ -81,9 +81,9 @@ Route::post('/upload', function() {
 });
 ```
 ## Responses
-| reply_code        | reply_text           |
-|:-------------:|:--------------------------|
-| 0   | OK | 
-| 1   | no file | 
-| 2   |no current file in storage|
-| 3 | Don't have permission to delete file|
+| reply_code        | reply_text           | remark |
+|:-------------:|:--------------------------|-------|
+| 0   | OK | ดำเนินการสำเร็จ |
+| 1   | no file | ไม่มี file ที่ต้องการ upload
+| 2   | no current file in storage| ไม่มี file ปัจจุบันใน storage
+| 3 | Don't have permission to delete file| ไม่มีสิทธิ์ในการลบไฟล์
