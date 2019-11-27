@@ -6,8 +6,8 @@
 | [download](#download)     | download file จาก Storage Service เข้าสู่ device |   `files/{slug}` | `GET` |
 | [store](#store) | store file จาก Storage Service เข้าสู่ folder storage ของ client |    `files/{slug}`| `GET` |
 | [put-file](#put-file) |  update file ที่อยู่แล้วใน Storage Service  |   `put-file` | `POST` |
-| [delete-file](#delete-file) | บ file ใน Storage Service   |  `delete-file`  | `POST` |
-| [delete-folder](#delete-folder) | บ folder ใน Storage Service  |   `delete-folder` | `POST` |
+| [delete-file](#delete-file) | ลบ file ใน Storage Service   |  `delete-file`  | `POST` |
+| [delete-folder](#delete-folder) | ลบ folder ใน Storage Service  |   `delete-folder` | `POST` |
 
 
 ### upload
@@ -25,13 +25,13 @@
 ### store
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
-| slug   |`true`| value ที่ใช้แทน id ของไฟล์ ||
+| slug   |`true`| value ที่ใช้แทน id ของไฟล์ |จะได้รับ slug หลังจากทำการ upload ไฟล์แล้ว|
 
 ### put-file
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
 | _method   |`true`| method ของการ update file โดยมีค่าเท่ากับ `put` ||
-| slug   |`true`| value ที่ใช้แทน id ของไฟล์||
+| slug   |`true`| value ที่ใช้แทน id ของไฟล์|จะได้รับ slug หลังจากทำการ upload ไฟล์แล้ว|
 | file   |`true`| file ใหม่ที่ต้องการส่ง|
 
 ### delete-file
