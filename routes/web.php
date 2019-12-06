@@ -33,3 +33,21 @@ Route::delete('/delete-folder', 'StorageServiceController@deleteFolder');
 Route::get('/file/{slug}','StorageServiceController@show');
 
 Route::get('/docs/{file}', 'DocsController')->name('docs.index');
+
+// Checking Files
+Route::get('medsicon/images', function () {  
+    $directory = request()->input('directory');
+    $imagePath = request()->input('imagePath'); 
+
+    if ($directory !== null)  return view('medsicon.images')->with(['imagePaths' => \Storage::directories($directory)]); 
+
+    $imagePath = request()->input('imagePath'); 
+    if ($imagePath !== null) {
+        $allFiles = \Storage::files($imagePath);
+        $files = [];
+        foreach($allFiles as $index => $allFile)
+            $files[] = ['file' => $allFile, 'date' => \Carbon\Carbon::parse(Storage::lastModified($allFile))->addHours(7), 'lastModified' => Storage::lastModified($allFile)];
+        return view('medsicon.images')->with(['files' => collect($files)->sortByDesc('date')]); 
+    }
+    return view('medsicon.images')->with(['directories' => \Storage::directories('medsicon/images')]);
+});
