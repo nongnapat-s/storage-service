@@ -1,4 +1,5 @@
 # Documentation
+ระบบ Storage Service เป็นระบบช่วยจัดเก็บ file ต่างๆ ของ client applications โดยมี function ต่างๆ ดังต่อไปนี้
 ## Functions
 | Function        | Description           | route  | method
 | -------------|:-----|:--------------------------|:----------------------|
@@ -14,7 +15,7 @@
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
 | file   |`true`| ไฟล์ที่ต้องการ upload | upload ไฟล์ได้ไม่เกินครั้ง 10 mb|
-| state   |`true`| folder ของ Storage Service ที่ต้องการเก็บไฟล์ โดยส่งคำว่า `public` หรือ `local`| หากต้องการเก็บไฟล์ที่สามารถดูผ่าน Browser ได้ให้เก็บไฟล์ไว้ที่ `public` |
+| state   |`true`| storage folder ของ Storage Service ที่ต้องการเก็บไฟล์ โดยส่งคำว่า `public` หรือ `local`| หากต้องการเก็บไฟล์ที่สามารถดูผ่าน browser ได้ให้เก็บไฟล์ไว้ที่ `public` |
 | sub_folder   |`false`| เพิ่ม sub folder ภายใต้ folder ที่สร้างขึ้นใน Storage Service  ||
 
 ### download
@@ -44,7 +45,7 @@
 | Data        |Required | Description           | Remark 
 | -------------|:-----:|:--------------------------|:----------------------|
 | _method   |`true`| method ของการลบ folder โดยมีค่าเท่ากับ `delete` | method's value is `delete`|
-| state   |`true`| folder ของ Storage Service ที่ต้องการลบ folderโดยส่งคำว่า `public` หรือ `local` ||
+| state   |`true`| storage folder ของ Storage Service ที่ต้องการลบ folderโดยส่งคำว่า `public` หรือ `local` ||
 | folder   |`false`| ชื่อของ folder ที่ต้องการลบ ||
 
 ## Example of uploading file by PHP with GuzzleHttp
@@ -81,7 +82,22 @@ Route::post('/upload', function() {
 });
 ```
 ## Responses
-| reply_code        | reply_text           | remark |
+
+### data
+| Key | Description|
+|:----------:|:---------|
+| path | directory ที่จัดเก็บ file |
+| state | storage folder ของ Storage Service ที่จัดเก็บ file |
+| name | ชื่อของ file |
+| type | ประเภทของ file |
+| size | ขนาดของ file |
+| url | กรณีที่ เก็บไฟล์ไว้ใน `public` ระบบจะ return url ที่ใช้สำหรับเข้าถึง file ผ่าน browser|
+| slug| value ที่ใช้แทน id ของไฟล์ |
+| created_at| วันและเวลาที่ upload file |
+| updated_at| วันและเวลาที่มีการ update file|
+
+### status
+| reply_code        | reply_text           | Description |
 |:-------------:|:--------------------------|-------|
 | 0   | OK | ดำเนินการสำเร็จ |
 | 1   | no file | ไม่มี file ที่ต้องการ upload

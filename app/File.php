@@ -7,6 +7,8 @@ use Ramsey\Uuid\Uuid;
 
 class File extends Model
 {
+    protected $hidden = [ 'app_id', 'id' ];
+    
     protected $fillable  = [ 
         'slug',
         'app_id',
