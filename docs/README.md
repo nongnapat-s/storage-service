@@ -152,6 +152,17 @@ Route::post('/upload', function() {
 | 401 | not allowed |Client ไม่ได้รับอนุญาติให้ดำเนินการต่างๆ กับ Storage Service |
 | 500 | internal server error | เกิด error ที่ฝั่ง Storage Service |
 
+### Reply statuses
+
+ข้อมูลที่ client จะได้รับจาก Storage Service ในการดำเนินการต่างๆ 
+
+| reply_code        | reply_text           | Description |
+|:-------------:|:--------------------------|-------|
+| 0   | OK | ดำเนินการสำเร็จ |
+| 1   | no file | ไม่มี file ที่ต้องการ upload
+| 2   | no current file in storage| ไม่มี file ปัจจุบันใน storage
+| 3 | Don't have permission to delete file| ไม่มีสิทธิ์ในการลบไฟล์
+
 ### Data
 
 ข้อมูลที่ client จะได้รับจาก Storage Service ในการดำเนินการ upload และ upload file
@@ -167,14 +178,3 @@ Route::post('/upload', function() {
 | slug| value ที่ใช้แทน id ของไฟล์ |
 | created_at| วันและเวลาที่ upload file |
 | updated_at| วันและเวลาที่มีการ update file|
-
-### Reply statuses
-
-ข้อมูลที่ client จะได้รับจาก Storage Service ในการดำเนินการต่างๆ 
-
-| reply_code        | reply_text           | Description |
-|:-------------:|:--------------------------|-------|
-| 0   | OK | ดำเนินการสำเร็จ |
-| 1   | no file | ไม่มี file ที่ต้องการ upload
-| 2   | no current file in storage| ไม่มี file ปัจจุบันใน storage
-| 3 | Don't have permission to delete file| ไม่มีสิทธิ์ในการลบไฟล์
