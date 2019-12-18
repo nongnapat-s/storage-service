@@ -31,9 +31,6 @@ Route::put('/update', 'StorageServiceController@update');
 Route::delete('/delete-file','StorageServiceController@deleteFile');
 Route::delete('/delete-folder', 'StorageServiceController@deleteFolder');
 Route::get('/file/{slug}','StorageServiceController@show');
-
-Route::get('/docs/{file}', 'DocsController')->name('docs.index');
-
 // Checking Files
 Route::get('medsicon/images', function () {  
     $directory = request()->input('directory');
