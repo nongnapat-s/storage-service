@@ -4,13 +4,15 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
 use \App\File;
-
+use \Carbon\Carbon;
 class StorageService {
 
     public function upload() {
         if(!request()->hasFile('file')) return ['reply_code' => 1, 'reply_text' => 'no file']; //check request has file
 
-        $now = \Carbon\Carbon::now();
+        if (request()->file('file')->getSize() > config('app.FILE_SIZE_ACCEPTED')) return ['reply_code' => 4, 'reply_text' => 'The file is too large'];
+
+        $now = Carbon::now();
         // create sub path
         $path = (request()->input('state') === 'public' ? 'public/': '')  // local or public path
                 .request()->input('app_name') // app's name path
