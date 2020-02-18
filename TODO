@@ -1,2 +1,15 @@
 Todo:
+  ☐ ทดสอบส่งไฟล์ไปที่ storage-service ด้วย แต่กระบวนการต่างๆ ยังเหมือนเดิม @started(20-02-18 09:31)
+  ☐ เทสการส่งไฟล์จาก medsicon ไป storage-service หลังจากที่ user กดบันทึกข้อมูล 
+
+  ☐ เทสเปลี่ยน queue ของ medsicon จาก database เป็น redis
+  
+  ☐ กระบวนการใน queue ต้องทำการ download file จาก storage-service มา
+
   ☐ เขียน app โดยใช้ javascript call และ upload ไฟล์ มายัง storage service
+
+  สิ่งที่ต้องทำ เมื่อมี requirement
+  ☐ ระบบมี 2 ที่ คือ ข้างในกับข้างนอก
+  ☐ เพิ่ม disk driver ให้สามารถ upload ไฟล์ ไว้ที่ เว็บภาค โดย App เป็นผู้เลือก
+    - local storage
+    - web storages
