@@ -1,5 +1,5 @@
 Todo:
-  ☐ ทดสอบส่งไฟล์ไปที่ storage-service ด้วย แต่กระบวนการต่างๆ ยังเหมือนเดิม @started(20-02-18 09:31)
+  ☐ ทดสอบส่งไฟล์ไปที่ storage-service ด้วย แต่กระบวนการต่างๆ ยังเหมือนเดิม => รอ jasmine ขึ้นก่อน
   ☐ เทสการส่งไฟล์จาก medsicon ไป storage-service หลังจากที่ user กดบันทึกข้อมูล 
 
   ☐ เทสเปลี่ยน queue ของ medsicon จาก database เป็น redis
