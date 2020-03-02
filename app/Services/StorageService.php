@@ -69,7 +69,7 @@ class StorageService {
         //check file or file was deleted
         if(!$file || $file->deleted) return ['reply_code' => 1, 'reply_text' => 'no file']; 
         //check permission to delete file
-        if(!$file->app_id !== request()->input('app_id')) return ['reply_code' => 3, 'reply_text' => "Don't have permission to delete file"]; 
+        if($file->app_id !== request()->input('app_id')) return ['reply_code' => 3, 'reply_text' => "Don't have permission to delete file"]; 
         // check can delete file or not
         if (Storage::delete($file->path . '/' . $file->name . '.' . $file->type) === false) 
             return ['reply_code' => 2, 'reply_text' => 'no current file in storage'];
