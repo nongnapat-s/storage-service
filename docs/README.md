@@ -149,7 +149,7 @@ Route::post('/upload', function() {
 |:----------:|:---------|:---------|
 | 200 | OK |สามารถส่ง Request ไปยัง Storage Service ได้สำเร็จ |
 | 400 | incomplete request |ส่งข้อมูลไปยัง Storage Service ไม่ครบถ้วน |
-| 401 | not allowed |Client ไม่ได้รับอนุญาติให้ดำเนินการต่างๆ กับ Storage Service |
+| 401 | not allowed |client ไม่ได้รับอนุญาติให้ดำเนินการต่างๆ กับ Storage Service |
 | 500 | internal server error | เกิด error ที่ฝั่ง Storage Service |
 
 ### Reply statuses
@@ -159,9 +159,10 @@ Route::post('/upload', function() {
 | reply_code        | reply_text           | Description |
 |:-------------:|:--------------------------|-------|
 | 0   | OK | ดำเนินการสำเร็จ |
-| 1   | no file | ไม่มี file ที่ต้องการ upload
-| 2   | no current file in storage| ไม่มี file ปัจจุบันใน storage
-| 3 | Don't have permission to delete file| ไม่มีสิทธิ์ในการลบไฟล์
+| 1   | no file | ไม่มี file ที่ต้องการ upload |
+| 2   | no current file in storage| ไม่มี file ปัจจุบันใน storage |
+| 3 | Don't have permission to delete file| ไม่มีสิทธิ์ในการลบ file |
+| 4 | The file is too large | file ที่ต้องการ upload มีขนาดใหญ่เกินไป |
 
 ### Data
 
