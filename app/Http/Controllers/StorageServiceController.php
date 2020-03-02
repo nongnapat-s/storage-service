@@ -23,7 +23,6 @@ class StorageServiceController extends Controller
   
     public function store()
     {
-        \Log::info(request()->file('file')->getSize());
         if  ( !request()->file('file') || 
               !request()->input('state') || 
               !in_array(request()->input('state'), $this->states)

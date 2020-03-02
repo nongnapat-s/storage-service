@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/storage-service/docs/',
+  base: '/docs/',
   dest: 'public/docs/',
   title: 'Storage Sevice Docs',
   markdown: {

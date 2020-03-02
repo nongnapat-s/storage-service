@@ -16,7 +16,6 @@ class StorgeSeviceGuard
      */
     public function handle($request, Closure $next)
     {
-        \Log::info($request->header('token'));
         if (
             // token is required
             !$request->header('token') || 
